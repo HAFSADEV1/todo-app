@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-6 my-4">
+        <h3>List Of tasks!</h3>
+    </div>
+    <div class="col-6 my-4">
+        <!-- <button class="btn btn-dark btn-sm text-right">
+           <i class="fa fa-plus"></i> New Task
+        </button> -->
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input [(ngModel)]="task.title" type="text" id="title" class="form-control">
+        </div>
+         <div class="form-check my-4">
+           <label class="form-check-label">
+             <input [(ngModel)]="task.completed" type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked>
+              Completed
+           </label>
+      </div>
+     
+         <button *ngIf="editForm" class="btn btn-warning btnup" (click)="updateTask()">
+           <i class="fa fa-edit"></i>Update Task</button>
+
+      <button *ngIf="!editForm" class="btn btn-success btn-block text-center btnup" (click)="insertTask()" >
+        <i class="fa fa-plus-circle"></i>Add task</button>
+         </div>
+         
+    </div>
+    
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+       <h1>List of Tasks</h1>
+        <ul class="list-group">
+            <li *ngFor="let task of tasks d-flex" class="list-group-item" (click)="editTask(task)">
+              <button class="btn btn-warning btn-sm">
+                <i class="fa fa-edit"></i>
+            </button>
+            
+                {{task.title}}
+                <span [ngClass]="{'badge-info': task.completed,
+                                 'badge-danger':!task.completed
+                    }">
+                  <i class="fa" [ngClass]="{
+                      'fa-thumbs-down':!task.completed,
+                      'fa-thumbs-up':task.completed
+                  }"></i>
+                </span>
+                <button id="btnDelete" (click)="deleteTask(task.id)" class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </li>
+        </ul>
+    </div>
+  </div>
